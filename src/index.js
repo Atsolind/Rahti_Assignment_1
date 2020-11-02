@@ -1,29 +1,5 @@
 import "./styles.css";
 let currentTurn = "O";
-var time = document.getElementById("insidebar");
-let width = 0;
-let id;
-
-function movebar() {
-  id = setInterval(frame, 100);
-  function frame() {
-    if (width >= 100) {
-      changePlayer();
-      resetWidth();
-      alert("Too slow, changin player.");
-    } else {
-      width++;
-      time.style.width = width + "%";
-      time.innerHTML = Math.round(width * 0.1) + " Sec";
-    }
-  }
-}
-
-function resetWidth() {
-  width = 0;
-  clearInterval(id);
-  time.style.width = width + "%";
-}
 
 function createTable() {
   const table = document.getElementById("board");
@@ -57,8 +33,6 @@ function cellClick(table) {
     for (var j = 0; j < table.rows[i].cells.length; j++) {
       table.rows[i].cells[j].onclick = function () {
         insertValue(this, table);
-        resetWidth();
-        movebar();
       };
     }
   }
